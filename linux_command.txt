@@ -1,0 +1,71 @@
+To create a locked user account:
+# useradd git -m -c 'git user'
+
+Unlock the account by issuing the passwd command to assign a password and set password aging guidelines:
+# passwd git
+
+Add the git user to the apache group:
+# usermod -a -G apache git
+
+Add a New Group
+# groupadd GROUPNAME
+
+Print the groups a user is in:
+# groups USERNAME
+
+Change a User's Primary Group
+# usermod -g GROUPNAME USERNAME
+
+View a User’s Group Assignments
+# id USERNAME
+# id -Gn USERNAME
+
+Find the modified files within the last 30 minutes:
+# find . -mmin -30
+
+Find the modified files within the last 3 days:
+# find . -mtime -3
+
+Find the modified files more than 3 days ago:
+# find . -mtime +3
+
+Find the modified files exactly 3 days ago:
+# find . -mtime 3
+
+Check to see if "other user" has any read, write, and execute permissions:
+# find . -perm /007 | xargs -I {} ls -la {}
+
+You can see if the repositories that you need are installed and enabled by running the following command:
+# yum repolist
+
+Some repositories, like Remi, are disabled by default. To list disabled repositories, run the following command:
+# yum repolist disabled
+
+List installed packages:
+# yum list installed | grep -i php
+
+To change Security-Enhanced Linux (SELinux) security context permission:
+# chcon -R --type=httpd_sys_content_t /var/www/html/magento19
+Or for read and write permission:
+# chcon -R -t httpd_sys_rw_content_t /var/www/html/magento19/app/etc
+
+# chcon -t httpd_log_t /var/log/php_errors.log
+Or
+# chcon -u system_u -t httpd_log_t /var/log/php_errors.log
+
+To put SELinux (Security-Enhanced Linux) in permissive mode:
+# setenforce 0
+
+To put SELinux (Security-Enhanced Linux) in enforcing mode:
+# setenforce 0
+
+# getenforce
+# sestatus -v
+# sestatus -b
+
+Open port 80 firewall access:
+# firewall-cmd --permanent --zone=public --add-port=80/tcp
+# firewall-cmd --reload
+or
+# systemctl restart firewalld.service
+
