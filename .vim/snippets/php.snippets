@@ -1,0 +1,363 @@
+snippet php
+	<?php
+	${1}
+	?>
+snippet ec
+	echo "${1:string}"${2};
+snippet inc
+	include '${1:file}';${2}
+snippet inc1
+	include_once '${1:file}';${2}
+snippet req
+	require '${1:file}';${2}
+snippet req1
+	require_once '${1:file}';${2}
+# $GLOBALS['...']
+snippet globals
+	$GLOBALS['${1:variable}']${2: = }${3:something}${4:;}${5}
+snippet $_ COOKIE['...']
+	$_COOKIE['${1:variable}']${2}
+snippet $_ ENV['...']
+	$_ENV['${1:variable}']${2}
+snippet $_ FILES['...']
+	$_FILES['${1:variable}']${2}
+snippet $_ Get['...']
+	$_GET['${1:variable}']${2}
+snippet $_ POST['...']
+	$_POST['${1:variable}']${2}
+snippet $_ REQUEST['...']
+	$_REQUEST['${1:variable}']${2}
+snippet $_ SERVER['...']
+	$_SERVER['${1:variable}']${2}
+snippet $_ SESSION['...']
+	$_SESSION['${1:variable}']${2}
+# Start Docblock
+snippet /*
+	/**
+	 * ${1}
+	 **/
+# Class - post doc
+snippet doc_cp
+	/**
+	 * ${1:undocumented class}
+	 *
+	 * @package ${2:default}
+	 * @author ${3:`g:snips_author`}
+	**/${4}
+# Class Variable - post doc
+snippet doc_vp
+	/**
+	 * ${1:undocumented class variable}
+	 *
+	 * @var ${2:string}
+	 **/${3}
+# Class Variable
+snippet doc_v
+	/**
+	 * ${3:undocumented class variable}
+	 *
+	 * @var ${4:string}
+	 **/
+	${1:var} $${2};${5}
+# Class
+snippet doc_c
+	/**
+	 * ${3:undocumented class}
+	 *
+	 * @packaged ${4:default}
+	 * @author ${5:`g:snips_author`}
+	 **/
+	${1:}class ${2:}
+	{${6}
+	} // END $1class $2
+# Constant Definition - post doc
+snippet doc_dp
+	/**
+	 * ${1:undocumented constant}
+	 **/${2}
+# Constant Definition
+snippet doc_d
+	/**
+	 * ${3:undocumented constant}
+	 **/
+	define(${1}, ${2});${4}
+# Function - post doc
+snippet doc_fp
+	/**
+	 * ${1:undocumented function}
+	 *
+	 * @return ${2:void}
+	 * @author ${3:`g:snips_author`}
+	 **/${4}
+# Function signature
+snippet doc_s
+	/**
+	 * ${4:undocumented function}
+	 *
+	 * @return ${5:void}
+	 * @author ${6:`g:snips_author`}
+	 **/
+	${1}function ${2}(${3});${7}
+# Function
+snippet doc_f
+	/**
+	 * ${4:undocumented function}
+	 *
+	 * @return ${5:void}
+	 * @author ${6:`g:snips_author`}
+	 **/
+	${1}function ${2}(${3})
+	{${7}
+	}
+# Header
+snippet doc_h
+	/**
+	 * ${1}
+	 *
+	 * @author ${2:`g:snips_author`}
+	 * @version ${3:$Id$}
+	 * @copyright ${4:$2}, `strftime('%d %B, %Y')`
+	 * @package ${5:default}
+	 **/
+	
+	/**
+	 * Define DocBlock
+	 *//
+# Interface
+snippet doc_i
+	/**
+	 * ${2:undocumented class}
+	 *
+	 * @package ${3:default}
+	 * @author ${4:`g:snips_author`}
+	 **/
+	interface ${1:}
+	{${5}
+	} // END interface $1
+# class ...
+snippet class
+	/**
+	 * ${1}
+	 **/
+	class ${2:ClassName}
+	{
+		${3}
+		function ${4:__construct}(${5:argument})
+		{
+			${6:// code...}
+		}
+	}
+# define(...)
+snippet def
+	define('${1}'${2});${3}
+# defined(...)
+snippet def?
+	${1}defined('${2}')${3}
+snippet while
+	while (${1}) {
+	}
+snippet wh
+	$outArr = array();
+
+	while ($obj = db_fetch_object($rs)) {
+	  $outArr[${1}]
+	}
+# do ... while
+snippet do
+	do {
+		${2:// code... }
+	} while (${1:/* condition */});
+snippet if
+	if (${1}) {
+	}
+snippet el
+	else {
+	}
+snippet ei
+	elseif (${1}) {
+	}
+# Tertiary conditional
+snippet t
+	$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};${5}
+snippet switch
+	switch ($${1:variable}) {
+		case '${2:value}':
+			${3:// code...}
+			break;
+		${5}
+		default:
+			${4:// code...}
+			break;
+	}
+snippet case
+	case '${1:value}':
+		${2:// code...}
+		break;${3}
+snippet for
+	for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
+		${4: // code...}
+	}
+snippet fe
+	foreach ($${1}) {
+	}
+snippet fun
+	function ${1}() {
+	}
+# $... = array (...)
+snippet array
+	$${1:arrayName} = array('${2}' => ${3});${4}
+
+### some useful shortcuts
+snippet o
+	$out .= ${1};
+snippet n
+	. PHP_EOL;
+snippet qp
+	$query = $param = array();
+snippet qq
+	$query[] = "${1}";
+snippet pp
+	$param[] = $${1};
+snippet im
+	 . implode(' AND ', $query) . " "
+snippet arr
+	array(${1})
+snippet sq
+	$sql .= "${1} ";
+snippet sqq
+	$sql = "SELECT ";
+snippet pr
+	echo '<pre>' . print_r($${1}, TRUE) . '</pre>';
+snippet db
+	file_put_contents('/tmp/debug1', print_r($${1}, TRUE) . PHP_EOL, FILE_APPEND);
+snippet date
+	date('m/d/Y H:i:s', $${1});
+snippet datee
+	date('Y-m-d H:i:s', $${1});
+snippet rs
+	$rs = db_query($sql, ${1});
+snippet ifs
+	if (isset($${1})) {
+	}
+snippet ife
+	if (empty($${1})) {
+	}
+snippet funs
+	function ${1}() {
+	  $sql = "SELECT ";
+	  $sql .= " ";
+	  $sql .= "FROM  ";
+	  $sql .= "WHERE ";
+	  $sql .= " ";
+	  $sql .= "ORDER BY  ";
+	
+	  $rs = db_query($sql);
+	
+	  $rowArr = array();
+	
+	  while ($row = db_fetch_object($rs)) {
+	  }
+	
+	  return $rowArr;
+	}
+snippet dt
+	###
+	$query = $param = array();
+
+	###
+	$header = array(
+	  array('data' => '', 'field' => '', 'sort' => 'desc'),
+	  array('data' => '', 'field' => ''),
+	  array('data' => ''),
+	);
+	
+	$sql = "SELECT ";
+	$sql .= " ";
+	$sql .= "FROM ${1} ";
+
+	if (!empty($query) {
+	  $sql .= "WHERE " . implode(' AND ', $query) . " ";
+	}
+	
+	$sql .= tablesort_sql($header) . " ";
+	
+	$rs = db_query($sql, $param);
+	
+	$resultCount = db_affected_rows();
+	
+	$rowArr = array();
+	
+	if ($resultCount == 0) {
+	  $rowArr[] = array(array('data' => 'Sorry, there is no related record.'));
+	}
+	else {
+	  while ($row = db_fetch_object($rs)) {
+	    $rowArr[] = array(
+	      'data' => array(
+	        $row->,
+	        $row->,
+	        $row->,
+	      ),
+	      'class' => 'cwnfn-highlight-row',
+	    );
+	  }
+	}
+	
+	return theme_table($header, $rowArr, array('width' => '100%'));
+snippet dp
+	###
+	$rowPerPage = 5;
+	
+	$page_num = isset($_GET['page']) ? $_GET['page'] : 0;
+
+	###
+	$query = $param = array();
+
+	###
+	$header = array(
+	  array('data' => '', 'field' => '', 'sort' => 'desc'),
+	  array('data' => '', 'field' => ''),
+	  array('data' => ''),
+	);
+	
+	$sql = "SELECT ";
+	$sql .= " ";
+	$sql .= "FROM ${1} ";
+
+	if (!empty($query) {
+	  $sql .= "WHERE " . implode(' AND ', $query) . " ";
+	}
+	
+	$sql .= tablesort_sql($header) . " ";
+	
+	$rs = pager_query($sql, $rowPerPage, 0, NULL, $param);
+	
+	$resultCount = db_affected_rows();
+	
+	$rowArr = array();
+	
+	if ($resultCount == 0) {
+		$rowArr[] = array(array('data' => 'Sorry, there is no related record.'));
+	}
+	else {
+		while ($row = db_fetch_object($rs)) {
+	
+			$rowArr[] = array(
+				'data' => array(
+					l('Add Contact', 'node/add/contact', array('query' => array('nid_comp' => $row->nid))),
+					l($row->title, 'node/' . $row->nid . '/edit', array('query' => array('page' => $page_num))),
+					date('m/d/Y', $row->changed),
+				),
+	      'class' => 'cwnfn-highlight-row',
+			);
+		}
+	}
+	
+	###
+	$out = '';
+	
+	$out .= theme_table($header, $rowArr, array('width' => '100%'));
+	$out .= ($page_num > 0) ? theme('pager_previous', t('previous'), $rowPerPage, 0, 1) . ' | ' : '';
+	$out .= theme('pager_next', t('next'), $rowPerPage, 0, 1);
+	
+	return $out;
