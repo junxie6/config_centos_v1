@@ -20,7 +20,8 @@ export LANGUAGE=en_US.UTF-8
 export HISTTIMEFORMAT="%m/%d/%y %T "
 
 ### Prompt
-PS1='\e[0;35m\u@\h \w #\e[m '
+#PS1='\e[0;35m\u@\h \w #\e[m '
+PS1='\[\e[0;35m\]\u@\h \w \$\[\e[0m\] '
 
 #######
 # Note: on Ubuntu, xterm-256color may be in different place, try this:
@@ -41,6 +42,9 @@ if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
   eval `$SSHAGENT $SSHAGENTARGS`
   trap "kill $SSH_AGENT_PID" 0
 fi
+
+### Make bash check its window size after a process completes
+shopt -s checkwinsize
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
