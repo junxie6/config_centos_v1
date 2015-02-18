@@ -57,7 +57,7 @@ To put SELinux (Security-Enhanced Linux) in permissive mode:
 # setenforce 0
 
 To put SELinux (Security-Enhanced Linux) in enforcing mode:
-# setenforce 0
+# setenforce 1
 
 # getenforce
 # sestatus -v
