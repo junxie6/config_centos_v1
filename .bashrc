@@ -39,6 +39,7 @@ fi
 
 ######
 # start up ssh-agent automatically when a new bash session starts.
+# Note: to add your key to the ssh-agent, run: ssh-add ~/.ssh/id_rsa
 # Note: the reason why I added -n "$SSH_TTY" is because without it, sftp and/or scp may fail at connection time if you have shell initialization (.profile, .bashrc, .cshrc, etc) which produces output for non-interactive sessions. This output confuses the sftp/scp client.
 # Note: refer to http://blog.ijun.org/2014/12/set-up-ssh-for-git-on-github.html
 # Note: the other way: if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
