@@ -1,3 +1,7 @@
+Start a tmux session:
+# tmux a -d
+# tmux
+
 To create a locked user account:
 # useradd git -m -c 'git user'
 
