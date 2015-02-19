@@ -37,11 +37,16 @@ else
   export TERM='xterm-color'
 fi
 
-### ssh-agent
+######
+# start up ssh-agent automatically when a new bash session starts.
+# Note: the reason why I added -n "$SSH_TTY" is because without it, sftp and/or scp may fail at connection time if you have shell initialization (.profile, .bashrc, .cshrc, etc) which produces output for non-interactive sessions. This output confuses the sftp/scp client.
+# Note: refer to http://blog.ijun.org/2014/12/set-up-ssh-for-git-on-github.html
+# Note: the other way: if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
+######
 SSHAGENT=/usr/bin/ssh-agent
 SSHAGENTARGS="-s"
 
-if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
+if [[ -z "$SSH_AUTH_SOCK" && -n "$SSH_TTY" && -a "$SSHAGENT" && -x "$SSHAGENT" ]]; then
   eval `$SSHAGENT $SSHAGENTARGS`
   trap "kill $SSH_AGENT_PID" 0
 fi
@@ -51,5 +56,6 @@ shopt -s checkwinsize
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+  . /etc/bashrc
 fi
+
