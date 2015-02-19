@@ -6,7 +6,7 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-alias gc='git ci -a -m "up"'
+alias gc='git commit -a -m "up"'
 alias gp='git push'
 
 alias ls='ls --color=auto'
