@@ -216,16 +216,50 @@ map <c-j> <c-w>60><c-w>l<c-w>30>
 " comment and uncomment lines
 vmap ,c I#<ESC>
 
-" add $sql prefix for sql statements
-vmap ,s I$sql .= "<ESC>5lx
-vmap ,n :s/$/';/<CR>:nohlsearch<CR>
-vmap ,N :s/$/ ";/<CR>:nohlsearch<CR>
+" Convert the data column to a php debug information.
+vmap ,e :call ConvColumnDataToPHPDebugInfo()<CR>
+
+" Convert SQL query string to php string.
+"vmap ,s I$sql .= "<ESC>5lx
+"vmap ,n :s/$/';/<CR>:nohlsearch<CR>
+"vmap ,N :s/$/ ";/<CR>:nohlsearch<CR>
+vmap ,s :call ConvSQLQueryToPHPString()<CR>`<5lx
 
 " add $out prefix for php string
-vmap ,o :s/\s\+/\0$out .= '/<CR>:nohlsearch<CR>
+"vmap ,o :s/\s\+/\0$out .= '/<CR>:nohlsearch<CR>
+vmap ,o :call ConvStringToPHPString()<CR>
 
 " convert backward slash to forward slash
 vmap ,b :s/\\/\//g<CR>:nohlsearch<CR>
+
+" Reference: https://github.com/tpope/vim-surround
+function! ConvStringToPHPString()
+  " use a comma as a seperator.
+  " match non-whitespace characters.
+  :s,\(\S\+\),$out .= "\1";,
+endfunction
+
+function! ConvSQLQueryToPHPString()
+  " use a comma as a seperator.
+  " match whitespace characters from the beginning of the line until a non-whitespace characters.
+  :s,^\(\s*\)[^ \t]\@=,\1$sql .=",
+
+  " match a newline character.
+  :s,\n,";\r,
+endfunction
+
+" Reference: http://vimdoc.sourceforge.net/htmldoc/pattern.html
+" Reference: http://vimregex.com/
+function! ConvColumnDataToPHPDebugInfo()
+  " replace comma with . '_' .
+  :s,\,, . '_' . ,g
+
+  " match whitespace characters from the beginning of the line until a non-whitespace characters.
+  :s,^\(\s*\)[^ \t]\@=,\1echo ,
+
+  " match a newline character.
+  :s/\n/ . "\\n";\r/
+endfunction
 
 " [imap] ===========================================================
 
