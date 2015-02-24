@@ -73,3 +73,5 @@ Open port 80 firewall access:
 or
 # systemctl restart firewalld.service
 
+To get a list of bash key bindings:
+# bind -P

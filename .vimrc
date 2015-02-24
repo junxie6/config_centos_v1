@@ -232,11 +232,20 @@ vmap ,o :call ConvStringToPHPString()<CR>
 " convert backward slash to forward slash
 vmap ,b :s/\\/\//g<CR>:nohlsearch<CR>
 
+vmap ,w :call WrapTagToString(
+
+" Reference: https://github.com/tpope/vim-surround
+function! WrapTagToString(startTag, endTag)
+  " Note: still has issue.
+  "execute "s,\\(\\S\\+\\)," . a:startTag . "\1" . a:endTag . ","
+endfunction
+
 " Reference: https://github.com/tpope/vim-surround
 function! ConvStringToPHPString()
+  " Note: still has issue.
   " use a comma as a seperator.
   " match non-whitespace characters.
-  :s,\(\S\+\),$out .= "\1";,
+  ":s,\(\S\+\),$out .= "\1";,
 endfunction
 
 function! ConvSQLQueryToPHPString()
@@ -283,11 +292,11 @@ colorscheme desert256
 "endif
 
 " Indentation use spaces instead of tabs.
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 " // ts: tabstop
 " // sts: softtabstop
 " // sw: shiftwidth
 " Note: http://drupal.org/node/29325
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " [JavaScript] enable folding of JavaScript code ===========================
 function! JavaScriptFold() 
