@@ -75,3 +75,13 @@ or
 
 To get a list of bash key bindings:
 # bind -P
+
+Set up MySQL configuration:
+# vim ~/.my.cnf
+
+[client]
+host = localhost
+port = 3306
+user = root
+password = MyPassword
+
