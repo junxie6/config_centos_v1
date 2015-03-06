@@ -15,6 +15,9 @@ alias ls='ls --color=auto'
 alias ll='ls -la'
 alias h='history'
 
+# A righteous umask
+umask 0027
+
 ### set up a clean UTF-8 environment
 ### run: locale command
 export LC_ALL=en_US.UTF-8
