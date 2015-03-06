@@ -8,8 +8,11 @@ To create a locked user account:
 Unlock the account by issuing the passwd command to assign a password and set password aging guidelines:
 # passwd git
 
-Add the git user to the apache group:
-# usermod -a -G apache git
+Add the apache user to the dev group:
+# usermod -a -G dev apache
+
+Remove a user from a group:
+# gpasswd -d user group
 
 Add a New Group
 # groupadd GROUPNAME
@@ -20,7 +23,7 @@ Print the groups a user is in:
 Change a User's Primary Group
 # usermod -g GROUPNAME USERNAME
 
-View a User’s Group Assignments
+View a User's Group Assignments
 # id USERNAME
 # id -Gn USERNAME
 
