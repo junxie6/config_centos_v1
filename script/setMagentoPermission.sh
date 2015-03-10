@@ -42,6 +42,8 @@ chcon -R -t httpd_sys_content_t ${magDir}/
 chcon -R -t httpd_sys_rw_content_t ${magDir}/var/
 chcon -R -t httpd_sys_rw_content_t ${magDir}/media/
 
+### protecting .htaccess files
+find ${magDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chmod 640 {}
 find ${magDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chcon -t httpd_sys_content_t {}
 
 ### protecting the .svn or .git directories
