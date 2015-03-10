@@ -18,6 +18,9 @@ alias h='history'
 # A righteous umask
 umask 0027
 
+### default editor
+export EDITOR=/bin/vim
+
 ### set up a clean UTF-8 environment
 ### run: locale command
 export LC_ALL=en_US.UTF-8
