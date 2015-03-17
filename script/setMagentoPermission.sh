@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 magDir="/www/magento1.9.1_us"
-srcCtl=".svn .git"
+srcCtl=".svn .git autorun"
 
 ### check if it's running by root
 
@@ -51,7 +51,7 @@ for d in ${srcCtl}; do
   dd=${magDir}/${d}/
 
   if [[ -d ${dd} ]]; then
-    find ${dd} -print0 | xargs -0 -I {} chown dev:dev {}
+    find ${dd} -print0 | xargs -0 -I {} chown dev:wheel {}
     find ${dd} -type f -print0 | xargs -0 -I {} chmod 600 {}
     find ${dd} -type d -print0 | xargs -0 -I {} chmod 700 {}
     
