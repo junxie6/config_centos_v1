@@ -8,6 +8,9 @@ To create a locked user account:
 Unlock the account by issuing the passwd command to assign a password and set password aging guidelines:
 # passwd git
 
+To delete a user:
+# userdel -r olduser
+
 Add the apache user to the dev group:
 # usermod -a -G dev apache
 
