@@ -56,6 +56,7 @@ for d in ${srcCtl}; do
     find ${dd} -type d -print0 | xargs -0 -I {} chmod 700 {}
     
     ### we should add the chon command here
+    chcon -R -t user_home_t ${dd}
   fi
 done
 
