@@ -82,6 +82,16 @@ or
 To get a list of bash key bindings:
 # bind -P
 
+Create MySQL database:
+mysql> CREATE DATABASE mydb DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+Grant MySQL permission:
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'test'@'192.168.0.%' IDENTIFIED BY '123456';
+mysql> FLUSH PRIVILEGES;
+
+Restore MySQL database:
+# mysql --default-character-set=utf8 -u user_name -p -P 3306 db_name < db_dumped.sql
+
 Set up MySQL configuration:
 # vim ~/.my.cnf
 
