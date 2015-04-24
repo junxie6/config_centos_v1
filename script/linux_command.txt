@@ -101,3 +101,8 @@ port = 3306
 user = root
 password = MyPassword
 
+To see a list of the IPs that have the most connections to port 80:
+# netstat -tn 2>/dev/null | grep ':80 ' | awk '{print $5}' | cut -f1 -d: | sort | uniq -c | sort -rn | head
+
+Check for SYN flood attacks:
+# netstat -nap | grep SYN | wc -l
