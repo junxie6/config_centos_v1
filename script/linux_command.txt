@@ -106,3 +106,15 @@ To see a list of the IPs that have the most connections to port 80:
 
 Check for SYN flood attacks:
 # netstat -nap | grep SYN | wc -l
+
+Firewall Block IP address:
+# firewall-cmd --state
+# firewall-cmd --list-all
+# firewall-cmd --get-zones
+# firewall-cmd --get-default-zone
+# firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="1.2.3.4" reject'
+# firewall-cmd --zone=public --remove-rich-rule='rule family="ipv4" source address="1.2.3.4" reject'
+
+# firewall-cmd --reload
+# firewall-cmd --complete-reload
+
