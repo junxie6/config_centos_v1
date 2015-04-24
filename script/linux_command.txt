@@ -112,6 +112,9 @@ Firewall Block IP address:
 # firewall-cmd --list-all
 # firewall-cmd --get-zones
 # firewall-cmd --get-default-zone
+# firewall-cmd --get-active-zones
+# firewall-cmd --get-services
+
 # firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="1.2.3.4" reject'
 # firewall-cmd --zone=public --remove-rich-rule='rule family="ipv4" source address="1.2.3.4" reject'
 
