@@ -121,3 +121,8 @@ Firewall Block IP address:
 # firewall-cmd --reload
 # firewall-cmd --complete-reload
 
+Use Mosh instead of SSH:
+# firewall-cmd --permanent --zone=public --add-port=60000-60020/udp
+# firewall-cmd --reload
+# mosh --ssh="ssh -i myserver.pem" centos@1.2.3.4
+
