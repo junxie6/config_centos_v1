@@ -128,4 +128,5 @@ Use Mosh instead of SSH:
 
 Get Swap Information:
 # cat /proc/meminfo | grep -i swap
+# cat /etc/fstab | grep -i swap
 
