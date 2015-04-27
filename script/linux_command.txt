@@ -92,6 +92,13 @@ mysql> FLUSH PRIVILEGES;
 Restore MySQL database:
 # mysql --default-character-set=utf8 -u user_name -p -P 3306 db_name < db_dumped.sql
 
+Add New Rule to firewalld to allow access to MySQL:
+
+# firewall-cmd --permanent --zone=trusted --add-source=127.0.0.1/32
+# firewall-cmd --permanent --zone=trusted --add-port=3306/tcp
+# firewall-cmd --reload
+# firewall-cmd --zone=trusted --list-all
+
 Set up MySQL configuration:
 # vim ~/.my.cnf
 
