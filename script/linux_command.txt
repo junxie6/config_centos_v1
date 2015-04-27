@@ -127,6 +127,7 @@ Use Mosh instead of SSH:
 # mosh --ssh="ssh -i myserver.pem" centos@1.2.3.4
 
 Get Swap Information:
-# cat /proc/meminfo | grep -i swap
 # cat /etc/fstab | grep -i swap
+# cat /proc/meminfo | grep -i swap
+# cat /proc/sys/vm/swappiness
 
