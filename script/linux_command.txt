@@ -154,5 +154,5 @@ To remove the svn:ignore property on current directory:
 # svn propdel svn:ignore .
 
 To remove the svn:ignore property recursively:
-# svn prodel svn:ignore -R
+# svn propdel svn:ignore -R
 
