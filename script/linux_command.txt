@@ -138,3 +138,15 @@ Get Swap Information:
 # cat /proc/meminfo | grep -i swap
 # cat /proc/sys/vm/swappiness
 
+List all svn properties on files, dirs, or revisions:
+# svn proplist /www/drupal6/sites
+
+Print the value of a svn property on files, dirs, or revisions:
+# svn propget svn:ignore /www/drupal6/sites
+
+Edit a svn property with an external editor:
+# svn propedit svn:ignore /www/drupal6/sites
+*.local
+*.com
+*.ca
+
