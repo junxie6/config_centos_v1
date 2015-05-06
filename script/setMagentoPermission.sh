@@ -38,13 +38,15 @@ find ${magDir}/var/ -type f -print0 | xargs -0 -I {} chmod 660 {}
 find ${magDir}/media/ -type d -print0 | xargs -0 -I {} chmod 770 {}
 find ${magDir}/media/ -type f -print0 | xargs -0 -I {} chmod 660 {}
 
-chmod 660 ${magDir}/sitemap.xml
-
 chcon -R -t httpd_sys_content_t ${magDir}/
 chcon -R -t httpd_sys_rw_content_t ${magDir}/var/
 chcon -R -t httpd_sys_rw_content_t ${magDir}/media/
 
-chcon -t httpd_sys_rw_content_t ${magDir}/sitemap.xml
+### sitemap
+if [[ -f ${magDir}/media/sitemap.xml ]]; then
+  chmod 660 ${magDir}/media/sitemap.xml
+  chcon -t httpd_sys_rw_content_t ${magDir}/media/sitemap.xml
+fi
 
 ### protecting .htaccess files
 find ${magDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chmod 640 {}
