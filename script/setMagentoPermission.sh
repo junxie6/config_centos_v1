@@ -62,7 +62,8 @@ for d in ${srcCtl}; do
     find ${dd} -type d -print0 | xargs -0 -I {} chmod 700 {}
     
     ### we should add the chon command here
-    chcon -R -t user_home_t ${dd}
+    ### Disabled: because when I "svn update", the SELinux security context permission would become "user_home_t" instead of "httpd_sys_content_t".
+    #chcon -R -t user_home_t ${dd}
   fi
 done
 
