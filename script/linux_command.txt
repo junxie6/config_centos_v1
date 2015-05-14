@@ -51,6 +51,15 @@ You can see if the repositories that you need are installed and enabled by runni
 Some repositories, like Remi, are disabled by default. To list disabled repositories, run the following command:
 # yum repolist disabled
 
+To list all packages with names that begin with php:
+# yum list php\*
+
+To find or search a package name:
+# yum search php
+
+To search for all packages that include files called libneon:
+# yum provides libneon
+
 List installed packages:
 # yum list installed | grep -i php
 
