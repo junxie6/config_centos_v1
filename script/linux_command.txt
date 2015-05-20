@@ -30,6 +30,9 @@ View a User's Group Assignments
 # id USERNAME
 # id -Gn USERNAME
 
+Find the files are not belonged to a certain user:
+# find . -not -user 'dev' | xargs -I {} ls -ld {}
+
 Find the modified files within the last 30 minutes:
 # find . -mmin -30
 
