@@ -15,6 +15,8 @@ alias ls='ls --color=auto'
 alias ll='ls -la'
 alias h='history'
 
+alias setdevmod='find . | xargs -I {} chown dev:dev {} ; find . -type d | xargs -I {} chmod 770 {} ; find . -type f | xargs -I {} chmod 660 {}'
+
 # A righteous umask
 umask 0027
 
