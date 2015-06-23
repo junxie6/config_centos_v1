@@ -17,6 +17,9 @@ alias h='history'
 
 alias setdevmod='find . | xargs -I {} chown dev:dev {} ; find . -type d | xargs -I {} chmod 770 {} ; find . -type f | xargs -I {} chmod 660 {}'
 
+alias g='grep -riI --exclude="*\.svn*"'
+alias gg='grep -rI --exclude="*\.svn*"'
+
 # A righteous umask
 umask 0027
 
