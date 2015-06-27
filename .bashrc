@@ -15,7 +15,7 @@ alias ls='ls --color=auto'
 alias ll='ls -la'
 alias h='history'
 
-alias setdevmod='find . | xargs -I {} chown dev:dev {} ; find . -type d | xargs -I {} chmod 770 {} ; find . -type f | xargs -I {} chmod 660 {}'
+alias setdevmod='find . | xargs -I {} chown dev:dev {} ; find . -type d | xargs -I {} chmod 770 {} ; find . -type f | xargs -I {} chmod 660 {} ; find . | xargs -I {} chcon -R -t httpd_sys_rw_content_t {}'
 
 alias g='grep -riI --exclude="*\.svn*"'
 alias gg='grep -rI --exclude="*\.svn*"'
