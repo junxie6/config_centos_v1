@@ -209,10 +209,10 @@ map <c-l> :bn<CR>
 map <c-k> :BufExplorer<CR>
 
 " open explore to list file in a directory
-map <c-e> :Explore<CR>
+map <c-j> :Explore<CR>
 
 " adjust windows size when there are three vertically split windows
-map <c-j> <c-w>60><c-w>l<c-w>30>
+map <c-e> <c-w>60><c-w>l<c-w>30>
 
 " [vmap] ===========================================================
 " comment and uncomment lines
