@@ -45,6 +45,12 @@ Find the modified files more than 3 days ago:
 Find the modified files exactly 3 days ago:
 # find . -mtime 3
 
+Find the largest 10 files:
+# find . -type f -print0 | xargs -0 du | sort -n | tail -10 | cut -f2 | xargs -I{} du -sh {}
+
+Find the largest 10 directories:
+# find . -type d -print0 | xargs -0 du | sort -n | tail -10 | cut -f2 | xargs -I{} du -sh {}
+
 Check to see if "other user" has any read, write, and execute permissions:
 # find . -perm /007 | xargs -I {} ls -la {}
 
