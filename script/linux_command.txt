@@ -185,3 +185,7 @@ To remove the svn:ignore property recursively:
 
 To show a list of filename have been changed:
 # git log --stat
+
+=== vim ===
+To replace all multiple spaces with a comma:
+:%s/\s\{1,}/,/gc
