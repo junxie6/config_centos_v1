@@ -178,3 +178,10 @@ To remove the svn:ignore property on current directory:
 To remove the svn:ignore property recursively:
 # svn propdel svn:ignore -R
 
+=== git ===
+# git init
+# git add -A .
+# git commit -a -m "update"
+
+To show a list of filename have been changed:
+# git log --stat
