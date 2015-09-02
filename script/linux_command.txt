@@ -178,6 +178,12 @@ To remove the svn:ignore property on current directory:
 To remove the svn:ignore property recursively:
 # svn propdel svn:ignore -R
 
+To ist the file names/paths that are committed for a revision:
+# svn log --verbose -r 12345
+
+To revert back / to restore to a previous SVN commit, the following command will rebase your working copy at revision 45:
+# svn update -r45
+
 === git ===
 # git init
 # git add -A .
