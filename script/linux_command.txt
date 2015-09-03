@@ -192,6 +192,13 @@ To revert back / to restore to a previous SVN commit, the following command will
 To show a list of filename have been changed:
 # git log --stat
 
+To show the change history of a file:
+# git log -p FILENAME
+
+To show the entire history of the file (including history beyond renames and with diffs for each change):
+# git log --follow -p -- FILENAME
+Note: The -- option tells Git that it has reached the end of the options and that anything that follows -- should be treated as an argument. For git log this only makes any difference if you have a path name that begins with a dash. Say you wanted to know the history of a file that has the unfortunate name "--follow".
+
 === vim ===
 To replace all multiple spaces with a comma:
 :%s/\s\{1,}/,/gc
