@@ -199,6 +199,27 @@ To show the entire history of the file (including history beyond renames and wit
 # git log --follow -p -- FILENAME
 Note: The -- option tells Git that it has reached the end of the options and that anything that follows -- should be treated as an argument. For git log this only makes any difference if you have a path name that begins with a dash. Say you wanted to know the history of a file that has the unfortunate name "--follow".
 
+=== SSH Tunnel ===
+Use SSH tunnel as a secure forward proxy:
+
+# ssh -D 8080 USER@HOST_NAME.COM
+or
+# ssh -N -f -D 8080 USER@HOST_NAME.COM
+
+You will need to configure a SOCKS proxy server in Google Chrome by adding these two flags when launch Chrome:
+
+--proxy-server="socks5://127.0.0.1:8080"
+--host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE 127.0.0.1"
+
+To set up the forward proxy through Putty:
+
+Open Putty > Connection > SSH > Tunnels: 
+
+Source Port: 8080
+Destination: (leave blank)
+Check "Dynamic"
+Click on "Add" button 
+
 === vim ===
 To replace all multiple spaces with a comma:
 :%s/\s\{1,}/,/gc
