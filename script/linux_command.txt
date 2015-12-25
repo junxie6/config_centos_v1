@@ -200,6 +200,8 @@ To show the entire history of the file (including history beyond renames and wit
 Note: The -- option tells Git that it has reached the end of the options and that anything that follows -- should be treated as an argument. For git log this only makes any difference if you have a path name that begins with a dash. Say you wanted to know the history of a file that has the unfortunate name "--follow".
 
 === SSH Tunnel ===
+A forward proxy proxies in behalf of clients. The following setup will allow you to sit in office and SSH connect to a remote server. The remote server will act as the proxy server to forward all your requests to the destination server.
+
 Use SSH tunnel as a secure forward proxy:
 
 # ssh -D 8080 USER@HOST_NAME.COM
