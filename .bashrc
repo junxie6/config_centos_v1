@@ -57,13 +57,13 @@ fi
 # Note: refer to http://blog.ijun.org/2014/12/set-up-ssh-for-git-on-github.html
 # Note: the other way: if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
 ######
-SSHAGENT=/usr/bin/ssh-agent
-SSHAGENTARGS="-s"
-
-if [[ -z "$SSH_AUTH_SOCK" && -n "$SSH_TTY" && -a "$SSHAGENT" && -x "$SSHAGENT" ]]; then
-  eval `$SSHAGENT $SSHAGENTARGS`
-  trap "kill $SSH_AGENT_PID" 0
-fi
+#SSHAGENT=/usr/bin/ssh-agent
+#SSHAGENTARGS="-s"
+#
+#if [[ -z "$SSH_AUTH_SOCK" && -n "$SSH_TTY" && -a "$SSHAGENT" && -x "$SSHAGENT" ]]; then
+#  eval `$SSHAGENT $SSHAGENTARGS`
+#  trap "kill $SSH_AGENT_PID" 0
+#fi
 
 ### Make bash check its window size after a process completes
 shopt -s checkwinsize
