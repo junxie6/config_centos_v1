@@ -46,7 +46,7 @@ find ${magDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -print0 | xargs -
 find ${magDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -type d -print0 | xargs -0 -I {} chmod 2750 {}
 find ${magDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -type f -print0 | xargs -0 -I {} chmod 640 {}
 
-### sites/*/files
+### sites
 find sites -mindepth 1 -maxdepth 1 -type d -not -path "sites/default" | while read line; do
   dd=${magDir}/${line}
 
