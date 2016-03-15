@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 ### check if it's running by root
 if [[ $EUID -ne 0 ]]; then
   echo "This script must be run as root" 1>&2
@@ -45,12 +46,21 @@ find ${magDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -print0 | xargs -
 find ${magDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -type d -print0 | xargs -0 -I {} chmod 2750 {}
 find ${magDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -type f -print0 | xargs -0 -I {} chmod 640 {}
 
-#chcon -R -t httpd_sys_rw_content_t ${magDir}/media/
+### sites/*/files
+find sites -mindepth 1 -maxdepth 1 -type d -not -path "sites/default" | while read line; do
+  dd=${magDir}/${line}
 
-exit 0
+  find ${dd}/files -type d -print0 | xargs -0 -I {} chmod 2770 {}
+  find ${dd}/files -type f -print0 | xargs -0 -I {} chmod 660 {}
+  find ${dd}/files -print0 | xargs -0 -I {} chcon -t httpd_sys_rw_content_t {}
+
+  /bin/chmod 440 ${dd}/settings.php
+  /bin/chcon -t httpd_sys_content_t ${dd}/settings.php
+done
 
 ### for the .htaccess files
-find ${magDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chmod 640 {}
+find ${magDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chown dev:dev {}
+find ${magDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chmod 644 {}
 find ${magDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chcon -t httpd_sys_content_t {}
 
 ### for the .svn and .git directories.
@@ -60,7 +70,6 @@ for d in ${srcCtl}; do
   if [[ -d ${dd} ]]; then
     find ${dd} -print0 | xargs -0 -I {} chown dev:dev {}
     find ${dd} -type f -print0 | xargs -0 -I {} chmod 600 {}
-
     find ${dd} -type d -print0 | xargs -0 -I {} chmod 0000 {}
     find ${dd} -type d -print0 | xargs -0 -I {} chmod 700 {}
     
