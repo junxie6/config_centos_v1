@@ -48,7 +48,7 @@ find ${druDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -type f -print0 |
 
 ### sites
 find ${druDir}/sites/ -mindepth 1 -maxdepth 1 -type d -not -path ${druDir}/sites/default | while read line; do
-  if [[ -d ${dd} ]]; then
+  if [[ -d ${line} ]]; then
     find ${line}/files/ -type d -print0 | xargs -0 -I {} chmod 2770 {}
     find ${line}/files/ -type f -print0 | xargs -0 -I {} chmod 660 {}
     find ${line}/files/ -print0 | xargs -0 -I {} chcon -t httpd_sys_rw_content_t {}
