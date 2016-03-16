@@ -2,33 +2,33 @@ Start a tmux session:
 # tmux a -d
 # tmux
 
-To create a locked user account:
-# useradd git -m -c 'git user'
+To create a locked user account called dev:
+# useradd dev -m -c 'git user'
 
 Unlock the account by issuing the passwd command to assign a password and set password aging guidelines:
-# passwd git
+# passwd dev
 
 To delete a user:
 # userdel -r olduser
 
-Add the apache user to the dev group:
-# usermod -a -G dev apache
+Add a new group called web:
+# groupadd web
+
+Add the dev user to the web group:
+# usermod -a -G web dev
 
 Remove a user from a group:
-# gpasswd -d user group
-
-Add a New Group
-# groupadd GROUPNAME
+# gpasswd -d USERNAME GROUPNAME
 
 Print the groups a user is in:
 # groups USERNAME
 
-Change a User's Primary Group
-# usermod -g GROUPNAME USERNAME
-
 View a User's Group Assignments
 # id USERNAME
 # id -Gn USERNAME
+
+Change a User's Primary Group
+# usermod -g GROUPNAME USERNAME
 
 Find the files are not belonged to a certain user:
 # find . -not -user 'dev' | xargs -I {} ls -ld {}
