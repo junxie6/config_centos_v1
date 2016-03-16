@@ -54,7 +54,7 @@ find sites -mindepth 1 -maxdepth 1 -type d -not -path "sites/default" | while re
   find ${dd}/files -type f -print0 | xargs -0 -I {} chmod 660 {}
   find ${dd}/files -print0 | xargs -0 -I {} chcon -t httpd_sys_rw_content_t {}
 
-  /bin/chmod 440 ${dd}/settings.php
+  /bin/chmod 640 ${dd}/settings.php
   /bin/chcon -t httpd_sys_content_t ${dd}/settings.php
 done
 
