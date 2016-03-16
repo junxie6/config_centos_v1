@@ -37,7 +37,11 @@ export HISTTIMEFORMAT="%m/%d/%y %T "
 
 ### Prompt
 #PS1='\e[0;35m\u@\h \w #\e[m '
-PS1='\[\e[0;35m\]\u@\h \w \$\[\e[0m\] '
+if [[ $EUID -ne 0 ]]; then
+  PS1='\[\e[0;35m\]\u@\h \w \$\[\e[0m\] '
+else
+  PS1='\[\e[0;32m\]\u@\h \w \$\[\e[0m\] '
+fi
 
 #######
 # Note: on Ubuntu, xterm-256color may be in different place, try this:
