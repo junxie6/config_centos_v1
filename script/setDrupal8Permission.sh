@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-magDir="/www/drupal8_public"
+druDir="/www/drupal8_public"
 srcCtl=".svn .git autorun"
 
 ### make sure apache is in web group
@@ -40,15 +40,15 @@ if ! isUserInGroup php-fpm web; then
 fi
 
 ### basic setting for the directories and files.
-find ${magDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -print0 | xargs -0 -I {} chown dev:web {}
-find ${magDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -print0 | xargs -0 -I {} chcon -t httpd_sys_content_t {}
+find ${druDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -print0 | xargs -0 -I {} chown dev:web {}
+find ${druDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -print0 | xargs -0 -I {} chcon -t httpd_sys_content_t {}
 
-find ${magDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -type d -print0 | xargs -0 -I {} chmod 2750 {}
-find ${magDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -type f -print0 | xargs -0 -I {} chmod 640 {}
+find ${druDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -type d -print0 | xargs -0 -I {} chmod 2750 {}
+find ${druDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -type f -print0 | xargs -0 -I {} chmod 640 {}
 
 ### sites
-find sites -mindepth 1 -maxdepth 1 -type d -not -path "sites/default" | while read line; do
-  dd=${magDir}/${line}
+find ${druDir}/sites -mindepth 1 -maxdepth 1 -type d -not -path "sites/default" | while read line; do
+  dd=${druDir}/${line}
 
   find ${dd}/files -type d -print0 | xargs -0 -I {} chmod 2770 {}
   find ${dd}/files -type f -print0 | xargs -0 -I {} chmod 660 {}
@@ -59,13 +59,13 @@ find sites -mindepth 1 -maxdepth 1 -type d -not -path "sites/default" | while re
 done
 
 ### for the .htaccess files
-find ${magDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chown dev:dev {}
-find ${magDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chmod 644 {}
-find ${magDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chcon -t httpd_sys_content_t {}
+find ${druDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chown dev:dev {}
+find ${druDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chmod 644 {}
+find ${druDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chcon -t httpd_sys_content_t {}
 
 ### for the .svn and .git directories.
 for d in ${srcCtl}; do
-  dd=${magDir}/${d}/
+  dd=${druDir}/${d}/
 
   if [[ -d ${dd} ]]; then
     find ${dd} -print0 | xargs -0 -I {} chown dev:dev {}
