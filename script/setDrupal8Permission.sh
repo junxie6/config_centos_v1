@@ -49,9 +49,11 @@ find ${druDir}/ -not -path "*/\.svn" -and -not -path "*/\.git" -type f -print0 |
 ### sites
 find ${druDir}/sites/ -mindepth 1 -maxdepth 1 -type d -not -path ${druDir}/sites/default | while read line; do
   if [[ -d ${line} ]]; then
-    find ${line}/files/ -type d -print0 | xargs -0 -I {} chmod 2770 {}
-    find ${line}/files/ -type f -print0 | xargs -0 -I {} chmod 660 {}
+    find ${line}/files/ -print0 | xargs -0 -I {} chown php-fpm:web {}
     find ${line}/files/ -print0 | xargs -0 -I {} chcon -t httpd_sys_rw_content_t {}
+
+    find ${line}/files/ -type d -print0 | xargs -0 -I {} chmod 2750 {}
+    find ${line}/files/ -type f -print0 | xargs -0 -I {} chmod 640 {}
 
     /bin/chmod 640 ${line}/settings.php
     /bin/chcon -t httpd_sys_content_t ${line}/settings.php
@@ -59,9 +61,10 @@ find ${druDir}/sites/ -mindepth 1 -maxdepth 1 -type d -not -path ${druDir}/sites
 done
 
 ### for the .htaccess files
-find ${druDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chown php-fpm:dev {}
-find ${druDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chmod 644 {}
-find ${druDir}/ -name '.htaccess' -type f -print0 | xargs -0 -I {} chcon -t httpd_sys_content_t {}
+find ${druDir}/ -name '.htaccess' -maxdepth 2 -type f -print0 | xargs -0 -I {} chown dev:dev {}
+find ${druDir}/ -name '.htaccess' -maxdepth 2 -type f -print0 | xargs -0 -I {} chcon -t httpd_sys_content_t {}
+
+find ${druDir}/ -name '.htaccess' -maxdepth 2 -type f -print0 | xargs -0 -I {} chmod 644 {}
 
 ### for the .svn and .git directories.
 for d in ${srcCtl}; do
@@ -69,9 +72,10 @@ for d in ${srcCtl}; do
 
   if [[ -d ${dd} ]]; then
     find ${dd}/ -print0 | xargs -0 -I {} chown dev:web {}
-    find ${dd}/ -type f -print0 | xargs -0 -I {} chmod 600 {}
-    find ${dd}/ -type d -print0 | xargs -0 -I {} chmod 2700 {}
     find ${dd}/ -print0 | xargs -0 -I {} chcon -t httpd_sys_content_t {}
+
+    find ${dd}/ -type d -print0 | xargs -0 -I {} chmod 2700 {}
+    find ${dd}/ -type f -print0 | xargs -0 -I {} chmod 600 {}
   fi
 done
 
