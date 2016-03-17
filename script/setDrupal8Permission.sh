@@ -64,7 +64,7 @@ find ${druDir}/sites/ -mindepth 1 -maxdepth 1 -type d -not -path ${druDir}/sites
 done
 
 ### for the .htaccess files within maxdepth 2
-find ${druDir}/ -maxdepth 2 -type f -name '.htaccess' -print0 | xargs -0 -I {} chown dev:dev {}
+find ${druDir}/ -maxdepth 2 -type f -name '.htaccess' -print0 | xargs -0 -I {} chown dev:web {}
 find ${druDir}/ -maxdepth 2 -type f -name '.htaccess' -print0 | xargs -0 -I {} chcon -t httpd_sys_content_t {}
                                                      
 find ${druDir}/ -maxdepth 2 -type f -name '.htaccess' -print0 | xargs -0 -I {} chmod 644 {}
