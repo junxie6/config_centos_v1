@@ -53,8 +53,8 @@ find ${druDir}/sites/ -mindepth 1 -maxdepth 1 -type d -not -path ${druDir}/sites
     find ${line}/files/ -print0 | xargs -0 -I {} chown php-fpm:web {}
     find ${line}/files/ -print0 | xargs -0 -I {} chcon -t httpd_sys_rw_content_t {}
 
-    find ${line}/files/ -type d -print0 | xargs -0 -I {} chmod 2750 {}
-    find ${line}/files/ -type f -print0 | xargs -0 -I {} chmod 640 {}
+    find ${line}/files/ -type d -print0 | xargs -0 -I {} chmod 2770 {}
+    find ${line}/files/ -type f -print0 | xargs -0 -I {} chmod 660 {}
 
     ### settings.php
     /bin/chown dev:web ${line}/settings.php
