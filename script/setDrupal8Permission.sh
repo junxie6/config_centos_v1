@@ -70,7 +70,7 @@ for d in ${srcCtl}; do
   if [[ -d ${dd} ]]; then
     find ${dd}/ -print0 | xargs -0 -I {} chown dev:dev {}
     find ${dd}/ -type f -print0 | xargs -0 -I {} chmod 600 {}
-    find ${dd}/ -type d -print0 | xargs -0 -I {} chmod 0000 {}
+    find ${dd}/ -type d -print0 | xargs -0 -I {} chmod -s {}
     find ${dd}/ -type d -print0 | xargs -0 -I {} chmod 700 {}
     
     ### we should add the chon command here
