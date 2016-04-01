@@ -33,6 +33,12 @@ Change a User's Primary Group
 Find the files are not belonged to a certain user:
 # find . -not -user 'dev' | xargs -I {} ls -ld {}
 
+Listing files and directories writable by the group:
+
+# find . -perm /0020
+or
+# find . -perm /g=w
+
 Find the modified files within the last 30 minutes:
 # find . -mmin -30
 
