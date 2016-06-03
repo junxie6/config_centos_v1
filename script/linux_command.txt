@@ -97,12 +97,6 @@ To put SELinux (Security-Enhanced Linux) in enforcing mode:
 # sestatus -v
 # sestatus -b
 
-Open port 80 firewall access:
-# firewall-cmd --permanent --zone=public --add-port=80/tcp
-# firewall-cmd --reload
-or
-# systemctl restart firewalld.service
-
 To get a list of bash key bindings:
 # bind -P
 
@@ -115,13 +109,6 @@ mysql> FLUSH PRIVILEGES;
 
 Restore MySQL database:
 # mysql --default-character-set=utf8 -u user_name -p -P 3306 db_name < db_dumped.sql
-
-Add New Rule to firewalld to allow access to MySQL:
-
-# firewall-cmd --permanent --zone=trusted --add-source=127.0.0.1/32
-# firewall-cmd --permanent --zone=trusted --add-port=3306/tcp
-# firewall-cmd --reload
-# firewall-cmd --zone=trusted --list-all
 
 Set up MySQL configuration:
 # vim ~/.my.cnf
@@ -141,22 +128,6 @@ To see a list of the IPs that have the most connections to port 80:
 
 Check for SYN flood attacks:
 # netstat -nap | grep SYN | wc -l
-
-Firewall Block IP address:
-# firewall-cmd --state
-# firewall-cmd --list-all
-# firewall-cmd --get-zones
-# firewall-cmd --get-default-zone
-# firewall-cmd --get-active-zones
-# firewall-cmd --get-services
-
-# firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="1.2.3.4" reject'
-# firewall-cmd --zone=public --remove-rich-rule='rule family="ipv4" source address="1.2.3.4" reject'
-
-# firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="192.168.0.2" port protocol="tcp" port="3306" accept'
-
-# firewall-cmd --reload
-# firewall-cmd --complete-reload
 
 Use Mosh instead of SSH:
 # firewall-cmd --permanent --zone=public --add-port=60000-60020/udp
@@ -192,6 +163,40 @@ To ist the file names/paths that are committed for a revision:
 To revert back / to restore to a previous SVN commit, the following command will rebase your working copy at revision 45:
 # svn update -r45
 
+=== ssl ===
+If you have Certificate Authority (CA) to issue the SSL certificate:
+# openssl req -newkey rsa:2048 -nodes -subj "/C=US/ST=New York/L=Brooklyn/O=Example Brooklyn Company/CN=examplebrooklyn.com" -keyout mydomain.key -out mydomain.csr
+
+Note: The -newkey rsa:2048 option specifies that the key should be 2048-bit, generated using the RSA algorithm.
+Note: The -nodes option specifies that the private key should not be encrypted with a pass phrase.
+Note: The -new option, which is not included here but implied, indicates that a CSR is being generated.
+
+Generate a Self-Signed Certificate:
+# openssl req -newkey rsa:2048 -nodes -subj "/C=US/ST=New York/L=Brooklyn/O=Example Brooklyn Company/CN=examplebrooklyn.com" -keyout mydomain.key -x509 -days 365 -out mydomain.crt
+=== firewall ===
+Basic commands:
+# systemctl restart firewalld.service
+# firewall-cmd --reload
+# firewall-cmd --list-all
+# firewall-cmd --zone=trusted --list-all
+# firewall-cmd --state
+# firewall-cmd --get-zones
+# firewall-cmd --get-default-zone
+# firewall-cmd --get-active-zones
+# firewall-cmd --get-services
+# firewall-cmd --complete-reload
+
+Allow firewall access:
+# firewall-cmd --permanent --zone=public --add-source=127.0.0.1/32
+# firewall-cmd --permanent --zone=public --add-port=80/tcp
+# firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="192.168.0.2" port protocol="tcp" port="3306" accept'
+
+Reject firewall access:
+# firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="1.2.3.4" reject'
+
+Remove firewall rules:
+# firewall-cmd --zone=public --remove-rich-rule='rule family="ipv4" source address="192.168.0.2" port protocol="tcp" port="3306" accept'
+# firewall-cmd --zone=public --remove-rich-rule='rule family="ipv4" source address="1.2.3.4" reject'
 === git ===
 # git init
 # git add -A .
