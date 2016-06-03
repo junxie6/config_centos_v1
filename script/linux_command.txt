@@ -153,6 +153,8 @@ Firewall Block IP address:
 # firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="1.2.3.4" reject'
 # firewall-cmd --zone=public --remove-rich-rule='rule family="ipv4" source address="1.2.3.4" reject'
 
+# firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="192.168.0.2" port protocol="tcp" port="3306" accept'
+
 # firewall-cmd --reload
 # firewall-cmd --complete-reload
 
