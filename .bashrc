@@ -7,7 +7,8 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 alias gs='git status'
-alias gc='git commit -a -m "up"'
+#alias gc='git commit -a -m "fix"'
+alias gc='git commit -a'
 alias gp='git push'
 alias gpp='git pull'
 
@@ -19,6 +20,13 @@ alias setdevmod='find . | xargs -I {} chown dev:dev {} ; find . -type d | xargs 
 
 alias g='grep -riI --exclude="*\.svn*"'
 alias gg='grep -rI --exclude="*\.svn*"'
+
+# find *.go files excluding .git and vendor directories
+alias fgo='FindGo'
+
+FindGo() {
+  /bin/find . -type d "(" -name .git -o -name vendor ")" -prune -o -type f -name "*.go" -print0 | xargs -0 -I {} grep -InH $1 {}
+}
 
 # A righteous umask
 umask 0027
@@ -38,7 +46,7 @@ export HISTTIMEFORMAT="%m/%d/%y %T "
 ### Prompt
 #PS1='\e[0;35m\u@\h \w #\e[m '
 if [[ $EUID -ne 0 ]]; then
-  PS1='\[\e[0;35m\]\u@\h \w \$\[\e[0m\] '
+  PS1='\[\e[0;33m\]\u@\h \w \$\[\e[0m\] '
 else
   PS1='\[\e[0;32m\]\u@\h \w \$\[\e[0m\] '
 fi

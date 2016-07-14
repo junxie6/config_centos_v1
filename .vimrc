@@ -317,4 +317,6 @@ let javaScript_fold=1 " use the built-in function instead of the custom function
 "au FileType javascript setl fen
 "" Note: http://amix.dk/blog/post/19132
 
+execute pathogen#infect()
+
 " [END] add by danny
