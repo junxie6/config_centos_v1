@@ -25,7 +25,7 @@ alias gg='grep -rI --exclude="*\.svn*"'
 alias fgo='FindGo'
 
 FindGo() {
-  /bin/find . -type d "(" -name .git -o -name vendor ")" -prune -o -type f -name "*.go" -print0 | xargs -0 -I {} grep -InH $1 {}
+  /bin/find . -type d "(" -name .git -o -name vendor ")" -prune -o -type f -name "*.go" -print0 | xargs -0 -I {} grep --color -InH $1 {}
 }
 
 # A righteous umask
