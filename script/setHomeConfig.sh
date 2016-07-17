@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 
-symbolicFileArr=".bashrc .inputrc .vim .vimrc .tmux.conf"
+symbolicFileArr=".bashrc .bash_profile .inputrc .vim .vimrc .tmux.conf"
 
 for file in ${symbolicFileArr}; do
   /usr/bin/rm -rf ~/${file}
