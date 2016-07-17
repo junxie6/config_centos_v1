@@ -1,1 +1,1 @@
-# linux_config_script
+# Linux Configuration and Script
