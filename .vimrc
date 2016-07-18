@@ -317,6 +317,18 @@ let javaScript_fold=1 " use the built-in function instead of the custom function
 "au FileType javascript setl fen
 "" Note: http://amix.dk/blog/post/19132
 
-execute pathogen#infect()
+"execute pathogen#infect()
+
+" set the runtime path to include Vundle and initialize
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'fatih/vim-go'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " [END] add by danny
