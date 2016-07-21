@@ -26,7 +26,7 @@ alias fgo='FindGo'
 
 FindGo() {
   # gnu find can handle mutliple filenames at once too (if ended with + instead of ;). For example: find . -name "*.go" -exec grep --color $1 -- {} + 
-  /bin/find . -type d "(" -name .git -o -name vendor ")" -prune -o -type f -name "*.go" -exec grep --color -InH "$1" -- {} +
+  /bin/find . -type d "(" -name .git -o -name vendor ")" -prune -o -type f -name "*.go" -exec grep --color -InH "$@" -- {} +
 
   # with xargs version:
   #/bin/find . -type d "(" -name .git -o -name vendor ")" -prune -o -type f -name "*.go" -print0 | xargs -0 -I {} grep --color -InH "$1" {}
